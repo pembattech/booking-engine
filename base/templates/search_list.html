@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+- Search
+{% endblock title %}
+
+
+{% block content %}
+
+<ul>
+    {% if matching_terms %}
+        {% for item in matching_terms %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    {% else %}
+    <p>No hotel found in {{ search_location }}</p>
+    {% endif %}
+
+</ul>
+
+
+{% endblock content %}

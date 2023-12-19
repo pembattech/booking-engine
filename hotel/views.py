@@ -4,7 +4,12 @@ from .forms import HotelForm
 from .models import Hotel
 
 def index(request):
-    return HttpResponse("hello this is hotel section")
+    hotel_instance = Hotel.objects.all()
+    
+    context = {
+        'allhotel': hotel_instance,
+    }
+    return render(request, 'index.html', context)
 
 def register_hotel(request):
     form = HotelForm(request.POST or None)

@@ -12,8 +12,12 @@
           <circle cx="12" cy="10" r="3" />
         </svg>
       </button>
-      <input type="text" class="search-input" value="San Francisco, Stockton Street">
-      <button class="search-btn">Find Hotel</button>
+
+      <form method="get" action="{% url 'search' %}">
+        <input type="text" class="search-input" name="location" placeholder="Enter location">
+        <button type="submit" class="search-btn">Find Hotel</button>
+      </form>
+      
     </div>
   </div>
   <div class="app-actions-line filter-line">

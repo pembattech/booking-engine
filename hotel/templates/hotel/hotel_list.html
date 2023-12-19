@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Hotels
+{% endblock title %}
+
+
+{% block content %}
+
+
+<section class="app-main">
+    <ul>
+        <hr>
+        {% for hotel in allhotel %}
+        <li>
+            <div class="hotel-card">
+                <div class="hotel-img">
+                    <img src="" alt="Hotel">
+                </div>
+                <div class="hotel-info">
+                    <div class="hotel-title">
+                        {{ hotel }}
+                    </div>
+                    <div class="hotel-address">
+                        {{ hotel.address }}
+                    </div>
+                    <a href="{% url 'hotel_detail' hotel.id %}">
+                        <button>
+                            View Detail
+                        </button>
+                    </a>
+                    <button>Book Now</button>
+                </div>
+            </div>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</section>
+
+
+{% endblock content %}
