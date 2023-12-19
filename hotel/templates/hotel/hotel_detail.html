@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ hotel }}
+{% endblock %}
+
+{% block content %}
+<section class="hotel-detail">
+    <div class="hotel-img">
+        <img src="" alt="Hotel">
+    </div>
+    <div class="hotel-info">
+        <div class="hotel-title">
+            {{ hotel }}
+        </div>
+        <div class="hotel-address">
+            {{ hotel.address }}
+        </div>
+        <div class="hotel-desc">
+            {{ hotel.description}}
+        </div>
+</section>
+
+{% endblock %}
