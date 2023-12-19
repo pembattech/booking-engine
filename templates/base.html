@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Engine {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="app-container">
+        <section class="navigation">
+            <a href="#" class="app-link">Booking Engine</a>
+
+            <div class="navigation-links">
+                <a href="#" class="nav-link active">
+                    Hotel
+                </a>
+            </div>
+
+            <div class="nav-right-side">
+                <button class="profile-btn">
+                    <span>Ryan Evans</span>
+                    <img src="https://images.unsplash.com/photo-1492633397843-92adffad3d1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80"
+                        alt="pp">
+                </button>
+            </div>
+        </section>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>
