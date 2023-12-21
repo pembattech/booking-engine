@@ -1,0 +1,33 @@
+{% load static %}
+<ul>
+    <hr>
+    {% for hotel in allhotel %}
+    <li>
+        <div class="hotel-card">
+            <div class="hotel-img">
+                <img src="{{ hotel.image.url }}">
+            </div>
+            <div class="hotel-info">
+                <div class="hotel-title">
+                    {{ hotel.name }}
+                </div>
+                <div class="hotel-address">
+                    <p> <img class="ico" src="{% static 'img/map.png' %}" alt=""> &nbsp;{{ hotel.address }}</p>
+                </div>
+                <div class="hotel-price">
+                    <p>Price: {{ hotel.price}}</p>
+                    <p class="info">+ Taxes, · per room per night</p>
+                </div>
+                <a href="{% url 'hotel_detail' hotel.slug %}">
+                    <button class="whiteButton button-style">
+                        View Detail
+                    </button>
+                </a>
+                <button class="greenButton button-style">Book Now</button>
+
+            </div>
+        </div>
+    </li>
+    <hr>
+    {% endfor %}
+</ul>

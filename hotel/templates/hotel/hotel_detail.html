@@ -5,20 +5,61 @@
 {% endblock %}
 
 {% block content %}
-<section class="hotel-detail">
-    <div class="hotel-img">
-        <img src="" alt="Hotel">
-    </div>
-    <div class="hotel-info">
-        <div class="hotel-title">
-            {{ hotel }}
+<div class="container">
+    <section class="hotel-detail">
+        <div class="hotel-img">
+            <img src="{{ hotel.image.url }}">
         </div>
-        <div class="hotel-address">
-            {{ hotel.address }}
+
+        <div class="hotel_detail__booking div-flex">
+            <div class="hotel-info">
+                <div class="hotel-title">
+                    {{ hotel.name }}
+                </div>
+                <div class="hotel-address">
+                    {{ hotel.address }}
+                </div>
+                <div class="hotel-desc">
+                    <div class="heading">Description</div>
+                    {{ hotel.description}}
+                </div>
+            </div>
+            <div class="continue-booking position-sticky">
+                <div class="hotel-price">
+                    <p class="heading">{{ hotel.price }}</p>
+                    <p class="info">Inclusive of all taxes</p>
+
+                    <div class="div-flex">
+                        <div class="checkin__checkout">
+                            <p>
+                                Date
+                            </p>
+                        </div>
+                        <div class="room__guest">
+                            <p>
+                                1 room
+                                1 guest
+                            </p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="div-flex">
+                        <div class="tp">
+                            <p>Total Price</p>
+                            <p class="info">(incl. of all taxes)</p>
+                        </div>
+                        <p>{{ hotel.price }}</p>
+                    </div>
+                    <br>
+                    <button class="button-style greenButton">Continue to Booking</button>
+
+                </div>
+            </div>
+
         </div>
-        <div class="hotel-desc">
-            {{ hotel.description}}
-        </div>
-</section>
+    </section>
+</div>
 
 {% endblock %}

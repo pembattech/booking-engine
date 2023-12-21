@@ -10,5 +10,7 @@ class HotelForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs = {'class': 'input-style'}),
             'address': forms.TextInput(attrs = {'class': 'input-style'}),
-            'descrption': forms.TextInput(attrs = {'class': 'input-style'})
+            'descrption': forms.TextInput(attrs = {'class': 'input-style'}),
+            'image': forms.ClearableFileInput(attrs = {'class': 'input-style'}),
+            'price': forms.TextInput(attrs = {'class': 'input-style'}),
         }

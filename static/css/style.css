@@ -3,6 +3,7 @@
 * {
     box-sizing: border-box;
     outline: none;
+    line-height: 1.25em;
 }
 
 :root {
@@ -60,6 +61,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 
 .app-link {
@@ -121,10 +123,6 @@ a {
     object-fit: cover;
 }
 
-section.app-actions {
-    padding: 32px 40px 0 40px;
-}
-
 .btn-icon {
     width: 16px;
 }
@@ -180,102 +178,138 @@ section.app-actions {
 .app-actions-line {
     display: flex;
     align-items: center;
-    margin: 32px 0;
-}
-
-.filter-action-buttons {
-    display: flex;
-    overflow-x: auto;
-    position: relative;
-}
-
-.filter-action-buttons button {
-    margin-bottom: 4px;
-}
-
-.filter-btn {
-    background-color: transparent;
-    border: 1px solid var(--main-border-color);
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    padding: 0;
-    padding-right: 8px;
-    margin: 0 16px;
-    color: var(--buttons-color-primary);
-    position: relative;
-}
-
-.filter-btn.more {
-    padding: 0 12px;
-}
-
-.filter-btn.more span {
-    color: var(--buttons-color-primary);
-    padding: 0 4px;
-}
-
-.filter-btn.more span:before {
-    display: none;
-}
-
-.filter-btn.more .filter-icon {
-    background-color: transparent;
-}
-
-.filter-text {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-    padding: 0 24px 0 8px;
-    position: relative;
-}
-
-.filter-text:before {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    right: 0;
-    top: 50%;
-    transform: translatey(-50%);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.filter-icon {
-    background-color: var(--buttons-color-secondary);
-    border-radius: 50%;
-    color: var(--buttons-color-primary);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-line-text {
-    font-size: 14px;
-    font-weight: 600;
-    margin-right: 32px;
-    color: var(--main-font-color);
+    margin: 0 0 30px 0;
 }
 
 
 /* PEMBA */
 
+.heading {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.position-sticky {
+    position: sticky;
+    top: 0;
+}
+
+.button-style {
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-align: center;
+    outline: none;
+    padding: 7px 15px !important;
+    width: auto !important;
+    margin: 0 !important;
+    align-self: flex-end;
+    white-space: nowrap;
+
+}
+
+.button-style.greenButton {
+    background-color: #1ab64f;
+    color: #fff;
+    border-radius: 2px !important;
+    border: 1px solid #1ab64f;
+}
+
+.button-style.whiteButton {
+    background-color: #fff;
+    color: #222;
+    border-radius: 2px !important;
+    border: 1px solid #222;
+}
+
 ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ico {
+    width: 20px;
+}
+
+.div-flex {
+    display: flex;
+    gap: 20px;
+}
+
+.container {
+    padding: 0px 40px 0 40px 
+}
+
+.hotel-price p.info {
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0;
+    margin-top: 0;
+}
+
+.hotel-img img {
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-main .hotel-img img {
+    width: 250px;
+    height: 200px;
+    object-fit: scale-down;
 }
 
 .hotel-card {
     display: flex;
+    gap: 20px;
 }
 
 .search-wrapper form {
     display: flex;
 }
+
+/* hotel detail */
+
+.hotel-title {
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.hotel-address, .hotel-price, .hotel-description {
+    font-weight: 500;
+}
+
+.hotel-price {
+    margin: 10px;
+}
+
+.hotel-price p {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.hotel-detail .hotel_detail__booking.div-flex {
+    gap: 50px;
+}
+.hotel-detail .hotel-info {
+    width: 900px;
+}
+
+.hotel-detail .hotel-title {
+    font-weight: 900;
+    font-size: 36px;
+}
+
+.continue-booking {
+    flex: 1;
+    border: 1px solid var(--modal-before);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 15px;
+    height: fit-content;
+}
+
+/* .hotel-detail .hotel-address {
+
+} */
