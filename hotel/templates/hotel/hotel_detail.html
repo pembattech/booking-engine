@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}
 {{ hotel }}
 {% endblock %}
@@ -8,7 +10,9 @@
 <div class="container">
     <section class="hotel-detail">
         <div class="hotel-img">
-            <img src="{{ hotel.image.url }}">
+            {% for hotelimage in images %}
+            <img src="{{ hotelimage.image.url }}">
+            {% endfor %}
         </div>
 
         <div class="hotel_detail__booking div-flex">
@@ -17,7 +21,7 @@
                     {{ hotel.name }}
                 </div>
                 <div class="hotel-address">
-                    {{ hotel.address }}
+                    <p> <img class="ico" src="{% static 'img/map.png' %}" alt=""> &nbsp;{{ hotel.address }}</p>
                 </div>
                 <div class="hotel-desc">
                     <div class="heading">Description</div>

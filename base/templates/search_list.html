@@ -1,23 +1,57 @@
 {% extends "base.html" %}
 
-
+{% load static %}
 {% block title %}
 - Search
 {% endblock title %}
 
-
 {% block content %}
 
-<ul>
-    {% if matching_terms %}
-        {% for item in matching_terms %}
-            <li>{{ item }}</li>
-        {% endfor %}
-    {% else %}
-    <p>No hotel found in {{ search_location }}</p>
-    {% endif %}
 
-</ul>
+<div class="container">
+
+    {% include "search.html" %}
+
+    <section class="app-main">
+        <ul>
+            <hr>
+            <br>
+            {% if matching_terms %}
+            {% for hotel in matching_terms %}
+            <li>
+                <div class="hotel-card">
+                    <div class="hotel-img">
+                        <img src="{{ hotel.images.all.first.image.url }}">
+                    </div>
+                    <div class="hotel-info">
+                        <div class="hotel-title">
+                            {{ hotel.name }}
+                        </div>
+                        <div class="hotel-address">
+                            <p> <img class="ico" src="{% static 'img/map.png' %}" alt=""> &nbsp;{{ hotel.address }}</p>
+                        </div>
+                        <div class="hotel-price">
+                            <p>Price: {{ hotel.price}}</p>
+                            <p class="info">+ Taxes, · per room per night</p>
+                        </div>
+                        <a href="{% url 'hotel_detail' hotel.slug %}">
+                            <button class="whiteButton button-style">
+                                View Detail
+                            </button>
+                        </a>
+                        <button class="greenButton button-style">Book Now</button>
+
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            {% else %}
+            <p>No hotel found in {{ search_location }}</p>
+            {% endif %}
+
+        </ul>
 
 
+    </section>
+</div>
 {% endblock content %}

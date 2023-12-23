@@ -3,25 +3,8 @@
 {% block content %}
 
 <div class="container">
-  <section class="app-actions">
-    <div class="app-actions-line">
-      <div class="search-wrapper">
-        <button class="loaction-btn">
-          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin" viewBox="0 0 24 24">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-        </button>
-
-        <form method="get" action="{% url 'search' %}">
-          <input type="text" class="search-input" name="location" placeholder="Enter location">
-          <button type="submit" class="search-btn">Find Hotel</button>
-        </form>
-
-      </div>
-    </div>
-  </section>
+  
+  {% include "search.html" %}
 
   <section class="app-main">
 
