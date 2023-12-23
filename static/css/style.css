@@ -132,36 +132,68 @@ a {
 }
 
 .button-style {
-    font-weight: 700 !important;
-    font-size: 15px !important;
+    font-weight: 700;
+    font-size: 15px;
     text-align: center;
     outline: none;
-    padding: 7px 15px !important;
-    width: auto !important;
-    margin: 0 !important;
+    padding: 7px 15px;
+    width: auto;
+    margin: 0;
     align-self: flex-end;
     white-space: nowrap;
 
 }
 
 .button-style.greenButton {
-    background-color: #1ab64f;
+    background-color: #4CAF50;
     color: #fff;
-    border-radius: 2px !important;
-    border: 1px solid #1ab64f;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
 }
 
 .button-style.whiteButton {
     background-color: #fff;
     color: #222;
-    border-radius: 2px !important;
+    border-radius: 5px;
     border: 1px solid #222;
+}
+
+.button-style.redButton {
+    background-color: red;color: #fff;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+
+.input-style {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.input-style.textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.input-style:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.1);
 }
 
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+form {
+    padding: 0 10px 10px 0;
 }
 
 .ico {
@@ -219,6 +251,7 @@ ul {
 
 .search-wrapper form {
     display: flex;
+    padding: 0;
 }
 
 /* hotel detail */
@@ -248,7 +281,7 @@ ul {
     gap: 50px;
 }
 
-.hotel-detail .hotel-info {
+.hotel-detail > .hotel-info {
     width: 900px;
 }
 
@@ -266,6 +299,36 @@ ul {
     height: fit-content;
 }
 
-/* .hotel-detail .hotel-address {
 
-} */
+/* login register */
+
+.login-register--container {
+    font-family: sans-serif;
+    margin: 40px auto;
+    text-align: center;
+    max-width: 500px;
+}
+
+.login-register--container input[type="text"],
+.login-register--container input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-register--container .button-style.greenButton {
+    border-radius: 5px;
+}
+
+/* user dashboard */
+.hotel-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.hotel-card-grid .hcard {
+    display: flex;
+    flex-direction: column;
+}

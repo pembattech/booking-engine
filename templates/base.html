@@ -12,7 +12,7 @@
 
 <body>
     <div class="app-container">
-        <div class="nav">
+        <div class="nav position-sticky">
             <div class="nav-left-side">
                 <a href="{% url 'home' %}" class="app-link">Booking Engine</a>
             </div>
@@ -22,6 +22,10 @@
                 <div class="profile">
                     <span>{{ request.user.username }}</span>
                 </div>
+                {% else %}
+                <a href="{% url 'login' %}"><p>Login</p></a>
+                <a href="{% url 'register' %}"><p>Register</p></a>
+
                 {% endif %}
             </div>
         </div>

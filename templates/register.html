@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-    <style>
-        /* Same styles as login.html */
-    </style>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-register--container">
     <h1>Register</h1>
-    <form method="POST">
+    <form method="POST" id="login-register-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Register</button>
+        <button class="button-style greenButton" type="submit">Register</button>
     </form>
-</body>
-</html>
-
+</div>
+{% endblock %}

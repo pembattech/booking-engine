@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from base.helper import generate_slug
 
@@ -9,6 +10,7 @@ class HotelImage(models.Model):
 
     
 class Hotel(models.Model):
+    hotelier = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length = 255)
     address = models.CharField(max_length = 255)
     description = models.TextField()

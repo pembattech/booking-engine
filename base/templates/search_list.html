@@ -34,7 +34,7 @@
                             <p>Price: {{ hotel.price}}</p>
                             <p class="info">+ Taxes, · per room per night</p>
                         </div>
-                        <a href="{% url 'hotel_detail' hotel.slug %}">
+                        <a href="{% url 'hotel:hotel_detail' hotel.slug %}">
                             <button class="whiteButton button-style">
                                 View Detail
                             </button>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import HotelForm
 
 from .models import Hotel, HotelImage
@@ -11,11 +12,13 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+@login_required(login_url="login")
 def register_hotel(request):
     if request.method == 'POST':
         form = HotelForm(request.POST, request.FILES)
         if form.is_valid():
             hotel_instance = form.save(commit=False)
+            hotel_instance.hotelier = request.user
             hotel_instance.save()
 
             for uploaded_file in request.FILES.getlist('images'):

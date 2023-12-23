@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+
+    <div class="user-profile">
+        <h1>Pemba Tamang</h1>
+    </div>
+    <hr>
+    <div class="list-of-hotel">
+        <p class="heading">Your Hotel</p>
+        <div class="hotel-card-grid">
+            {% for hotel in hotels %}
+            <ul>
+
+                <div class="hcard">
+                    <li>
+                        <div class="hotel-img">
+                            <img src="{{ hotel.images.first.image.url }}">
+                        </div>
+                        <div class="hotel-info">
+                            <div class="hotel-title">
+                                {{ hotel.name }}
+                            </div>
+                            <div class="hotel-address">
+                                <p> <img class="ico" src="{% static 'img/map.png' %}" alt=""> &nbsp;{{ hotel.address }}
+                                </p>
+                            </div>
+                            <div class="hotel-price">
+                                <p>Price: {{ hotel.price}}</p>
+                            </div>
+                            <a href="{% url 'user_dashboard:delete_hotel' hotel.slug %}">
+                                <button class="greenButton button-style">
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="{% url 'user_dashboard:delete_hotel' hotel.slug %}">
+                                <button class="redButton button-style">Delete</button>
+                            </a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
