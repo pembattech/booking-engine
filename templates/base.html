@@ -12,23 +12,19 @@
 
 <body>
     <div class="app-container">
-        <section class="navigation position-sticky">
-            <a href="{% url 'home' %}" class="app-link">Booking Engine</a>
-
-            <div class="navigation-links">
-                <a href="#" class="nav-link active">
-                    Hotel
-                </a>
+        <div class="nav">
+            <div class="nav-left-side">
+                <a href="{% url 'home' %}" class="app-link">Booking Engine</a>
             </div>
-
             <div class="nav-right-side">
-                <button class="profile-btn">
-                    <span>Ryan Evans</span>
-                    <img src=""
-                        alt="pp">
-                </button>
+                <a href="{% url 'hotel:add_hotel' %}"><p>List your Property</p></a>
+                {% if request.user.is_authenticated %}
+                <div class="profile">
+                    <span>{{ request.user.username }}</span>
+                </div>
+                {% endif %}
             </div>
-        </section>
+        </div>
         {% block content %}
 
         {% endblock %}

@@ -20,7 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('base.urls')),
-    path("hotel/", include('hotel.urls') )
+    path("hotel/", include('hotel.urls'))
 ]
 
 from django.conf import settings

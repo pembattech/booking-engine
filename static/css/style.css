@@ -28,10 +28,6 @@ h2 {
     margin: 0;
 }
 
-.nav-right-side {
-    display: flex;
-}
-
 body {
     width: 100%;
     margin: 0;
@@ -56,14 +52,6 @@ a {
     height: 100%;
 }
 
-.navigation {
-    padding: 24px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-}
-
 .app-link {
     font-weight: 600;
     font-size: 20px;
@@ -71,57 +59,6 @@ a {
     line-height: 24px;
 }
 
-.navigation-links {
-    width: 60%;
-    display: flex;
-    justify-content: space-between;
-    max-width: 420px;
-}
-
-.nav-link {
-    color: var(--light-font-color);
-    font-weight: 500;
-    font-size: 14px;
-    margin: 0 8px;
-    transition: 0.2s;
-}
-
-.nav-link.active {
-    color: var(--main-font-color);
-}
-
-.nav-link:not(.active):hover {
-    color: var(--buttons-color-primary);
-}
-
-.profile-btn {
-    border: 1px solid var(--secondary-border-color);
-    background-color: transparent;
-    border-radius: 20px;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.2s;
-}
-
-.profile-btn:hover {
-    border-color: var(--buttons-color-primary);
-}
-
-.profile-btn span {
-    padding: 0 8px;
-    font-weight: 500;
-    color: var(--buttons-color-primary);
-}
-
-.profile-btn img {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    -o-object-fit: cover;
-    object-fit: cover;
-}
 
 .btn-icon {
     width: 16px;
@@ -236,8 +173,24 @@ ul {
     gap: 20px;
 }
 
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 16px 40px;
+    background-color: white;
+}
+
+.nav-right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
 .container {
-    padding: 0px 40px 0 40px 
+    padding: 15px 40px 0 40px
 }
 
 .hotel-price p.info {
@@ -275,7 +228,9 @@ ul {
     font-size: 30px;
 }
 
-.hotel-address, .hotel-price, .hotel-description {
+.hotel-address,
+.hotel-price,
+.hotel-description {
     font-weight: 500;
 }
 
@@ -292,6 +247,7 @@ ul {
 .hotel-detail .hotel_detail__booking.div-flex {
     gap: 50px;
 }
+
 .hotel-detail .hotel-info {
     width: 900px;
 }

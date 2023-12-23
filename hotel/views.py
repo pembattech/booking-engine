@@ -23,6 +23,8 @@ def register_hotel(request):
                 hotel_instance.images.add(hotelimage_instance)
             
             hotel_instance.save()
+            
+            return redirect('hotel:hotel_detail', slug=hotel_instance.slug)
         else:
             # Handle the case where no files were submitted
             return render(request, 'add_hotel.html', {'form': form, 'error': 'Please select images to upload'})
