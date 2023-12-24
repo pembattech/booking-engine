@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  /* General form styling */
+  form {
+    max-width: 600px;
+    /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #images {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Adjust column widths as needed */
+    gap: 10px;
+    /* Adjust spacing between images */
+  }
+
+  .image-container {
+    border: none;
+    /* Remove individual image borders */
+    padding: 0;
+  }
+
+  #images.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Adjust column width as needed */
+    gap: 10px;
+  }
+
+  .image-container img {
+    max-width: 100px;
+    /* Adjust as needed */
+    height: auto;
+  }
+
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    margin-top: 5px;
+  }
+</style>
+
+<h1>Edit Hotel: {{ hotel_instance.name }}</h1>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ hotel_form.as_p }}
+
+  <div id="images" class="grid">
+    {% for image in hotel_instance.images.all %}
+    <div class="image-container">
+      <img src="{{ image.image.url }}" alt="images">
+      <input type="checkbox" name="images_to_delete" value="{{ image.id }}"> Delete
+    </div>
+    {% endfor %}
+  </div>
+
+  <div id="preview-images"></div>
+  <button type="submit">Save Hotel</button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const imagesInput = document.querySelector('#id_images');
+    const previewImages = document.querySelector('#preview-images');
+    const existingImages = document.querySelectorAll('#images img'); // Select existing images
+
+    // Preview existing images on page load
+    existingImages.forEach((image) => {
+      const previewImage = document.createElement('img');
+      previewImage.src = image.src;
+      previewImages.appendChild(previewImage);
+    });
+
+    imagesInput.addEventListener('change', (event) => {
+      const files = event.target.files;
+
+      previewImages.innerHTML = '';  // Clear any previous previews
+
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const previewImage = document.createElement('img');
+          previewImage.src = event.target.result;
+          previewImages.appendChild(previewImage);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+</script>
+{% endblock %}

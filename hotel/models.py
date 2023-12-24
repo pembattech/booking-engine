@@ -22,5 +22,6 @@ class Hotel(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        self.slug = generate_slug(self.name)
+        if not self.pk:
+            self.slug = generate_slug(self.name)
         super(Hotel, self).save(*args, **kwargs)

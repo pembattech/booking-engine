@@ -196,6 +196,11 @@ form {
     padding: 0 10px 10px 0;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+}
+
 .ico {
     width: 20px;
 }
@@ -281,7 +286,7 @@ form {
     gap: 50px;
 }
 
-.hotel-detail > .hotel-info {
+.hotel-detail .hotel-info {
     width: 900px;
 }
 
@@ -331,4 +336,14 @@ form {
 .hotel-card-grid .hcard {
     display: flex;
     flex-direction: column;
+}
+
+/* edit hotel */
+#preview-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#preview-images img {
+    width: 300px;
 }

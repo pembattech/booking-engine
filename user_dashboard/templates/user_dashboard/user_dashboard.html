@@ -24,7 +24,9 @@
                         </div>
                         <div class="hotel-info">
                             <div class="hotel-title">
-                                {{ hotel.name }}
+                                <a href="{% url 'hotel:hotel_detail' hotel.slug %}">
+                                    <p class="heading">{{ hotel.name }}</p>
+                                </a>
                             </div>
                             <div class="hotel-address">
                                 <p> <img class="ico" src="{% static 'img/map.png' %}" alt=""> &nbsp;{{ hotel.address }}
@@ -33,7 +35,7 @@
                             <div class="hotel-price">
                                 <p>Price: {{ hotel.price}}</p>
                             </div>
-                            <a href="{% url 'user_dashboard:delete_hotel' hotel.slug %}">
+                            <a href="{% url 'user_dashboard:edit_hotel' hotel.slug %}">
                                 <button class="greenButton button-style">
                                     Edit
                                 </button>
