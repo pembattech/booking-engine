@@ -295,6 +295,12 @@ p {
     font-size: 36px;
 }
 
+.hotel-detail .hotel-img {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+}
+
 .continue-booking {
     flex: 1;
     border: 1px solid var(--modal-before);

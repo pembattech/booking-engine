@@ -1,43 +1,51 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import HotelForm
+from .forms import HotelForm, HotelImageFormSet
 
 from .models import Hotel, HotelImage
 
+
 def index(request):
     hotel_instance = Hotel.objects.all()
-    
+
     context = {
-        'allhotel': hotel_instance,
+        "allhotel": hotel_instance,
     }
-    return render(request, 'index.html', context)
+    return render(request, "index.html", context)
+
 
 @login_required(login_url="login")
 def register_hotel(request):
-    if request.method == 'POST':
-        form = HotelForm(request.POST, request.FILES)
-        if form.is_valid():
-            hotel_instance = form.save(commit=False)
-            hotel_instance.hotelier = request.user
-            hotel_instance.save()
+    if request.method == "POST":
+        hotel_form = HotelForm(request.POST)
+        hotelimg_formset = HotelImageFormSet(request.POST, request.FILES)
 
-            for uploaded_file in request.FILES.getlist('images'):
-                hotelimage_instance = HotelImage.objects.create(image=uploaded_file)
-                hotel_instance.images.add(hotelimage_instance)
+        if hotel_form.is_valid() and hotelimg_formset.is_valid():
+            hotel = hotel_form.save(commit=False)
+            hotel.hotelier = request.user
+            hotel.save()
             
-            hotel_instance.save()
-            
-            return redirect('hotel:hotel_detail', slug=hotel_instance.slug)
-        else:
-            # Handle the case where no files were submitted
-            return render(request, 'add_hotel.html', {'form': form, 'error': 'Please select images to upload'})
+            hotelimg_formset.instance = hotel
+            hotelimg_formset.save()
+
+            return redirect("hotel:hotel_detail", slug=hotel.slug)
+
     else:
-        form = HotelForm()
+        hotel_form = HotelForm()
+        hotelimg_formset = HotelImageFormSet(instance=None)
 
-    return render(request, 'hotel/add_hotel.html', {'form': form})
+    context = {
+        "hotel_form": hotel_form,
+        "hotelimg_formset": hotelimg_formset,
+    }
+
+    return render(request, "hotel/add_hotel.html", context)
+
 
 def hotel_detail(request, slug):
     hotel = get_object_or_404(Hotel, slug=slug)
-    images = hotel.images.all()
+    images = hotel.hotelimage_set.all()
 
-    return render(request, 'hotel/hotel_detail.html', {'hotel': hotel, 'images': images})
+    return render(
+        request, "hotel/hotel_detail.html", {"hotel": hotel, "images": images}
+    )
