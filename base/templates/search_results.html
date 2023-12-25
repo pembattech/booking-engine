@@ -1,27 +1,28 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load static %}
+
 {% block title %}
-- Search
-{% endblock title %}
+Search Results for '{{ query }}'
+{% endblock %}
 
 {% block content %}
-
-
 <div class="container">
+
 
     {% include "search.html" %}
 
     <section class="app-main">
+
+        <h1>Search Results for "{{ query }}"</h1>
+
+        {% if hotels %}
         <ul>
-            <hr>
-            <br>
-            {% if matching_terms %}
-            {% for hotel in matching_terms %}
+            {% for hotel in hotels %}
             <li>
                 <div class="hotel-card">
                     <div class="hotel-img">
-                        <img src="{{ hotel.images.all.first.image.url }}">
+                        <img src="{{ hotel.hotelimage_set.first.hotel_images.url }}">
                     </div>
                     <div class="hotel-info">
                         <div class="hotel-title">
@@ -41,17 +42,13 @@
                         </a>
                         <button class="greenButton button-style">Book Now</button>
 
-                    </div>
-                </div>
             </li>
             {% endfor %}
-            {% else %}
-            <p>No hotel found in {{ search_location }}</p>
-            {% endif %}
-
         </ul>
-
+        {% else %}
+        <p>No hotels found for "{{ query }}".</p>
+        {% endif %}
 
     </section>
 </div>
-{% endblock content %}
+{% endblock %}

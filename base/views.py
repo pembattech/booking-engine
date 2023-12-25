@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Q
 
 from hotel.models import Hotel
 
@@ -14,18 +15,17 @@ def home(request):
     return render(request, 'index.html', context)
 
 def search_hotel(request):
-    location = request.GET.get('location', '')
+    query = request.GET.get('q', '')  # Get the search query from the request
 
-    search_terms = location.split()
-    hotel_instance = Hotel.objects.all()
-    
-    matching_terms = []
-    for location_item in search_terms:
-        for hotel in hotel_instance:
-            if location_item.lower() in hotel.address.lower():
-                matching_terms.append(hotel)
+    # Search for hotels based on the name, address, or description containing the query
+    hotels = Hotel.objects.filter(Q(name__icontains=query) | Q(address__icontains=query) | Q(description__icontains=query))
 
-    return render(request, 'search_list.html', {'matching_terms': matching_terms, 'search_location': location})
+    context = {
+        'hotels': hotels,
+        'query': query,
+    }
+
+    return render(request, 'search_results.html', context)
 
 def register_user(request):
     if request.method == "POST":
