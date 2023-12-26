@@ -1,7 +1,7 @@
 from django.contrib import admin
 import admin_thumbnails
 
-from .models import Hotel, HotelImage
+from .models import Hotel, HotelImage, Reservation
 
 @admin_thumbnails.thumbnail('hotel_images')
 class HotelImageInline(admin.TabularInline):
@@ -15,3 +15,4 @@ class HotelAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Hotel, HotelAdmin)
 admin.site.register(HotelImage)
+admin.site.register(Reservation)

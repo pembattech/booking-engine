@@ -29,41 +29,60 @@
                 </div>
             </div>
             <div class="continue-booking position-sticky">
-                <div class="hotel-price">
-                    <p class="heading">{{ hotel.price }}</p>
-                    <p class="info">Inclusive of all taxes</p>
 
-                    <div class="div-flex">
-                        <div class="checkin__checkout">
-                            <p>
-                                Date
-                            </p>
-                        </div>
-                        <div class="room__guest">
-                            <p>
-                                1 room
-                                1 guest
-                            </p>
-                        </div>
+                <form id="reservation-form" method="post">
+                    {% csrf_token %}
+                    {{ reservation_form.as_p }}
+
+                    <!-- Display the total cost -->
+                    <div id="total-cost">
+                        <p>Total Price: {{ hotel.price }} </p>
                     </div>
+                    
 
-                    <hr>
+                    <input type="submit" value="Submit">
+                </form>
 
-                    <div class="div-flex">
-                        <div class="tp">
-                            <p>Total Price</p>
-                            <p class="info">(incl. of all taxes)</p>
-                        </div>
-                        <p>{{ hotel.price }}</p>
-                    </div>
-                    <br>
-                    <button class="button-style greenButton">Continue to Booking</button>
 
-                </div>
             </div>
 
         </div>
     </section>
 </div>
 
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        // Attach the event listener to form inputs
+        $('#reservation-form input, #reservation-form select').on('input', function () {
+            updateTotalCost();
+        });
+
+        // Function to update the total cost
+        function updateTotalCost() {
+            // Serialize form data
+            var formData = $('#reservation-form').serialize();
+
+            // Update with your actual URL pattern for update_total_cost
+            var url = '{% url "hotel:update_total_cost" hotel.slug %}';
+
+            // Make AJAX request to update total cost
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function (data) {
+                    $('#total-cost').html('<p>Total Price: ' + data.total_cost + '</p>');
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+</script>
 {% endblock %}
